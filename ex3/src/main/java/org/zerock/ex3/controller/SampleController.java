@@ -23,23 +23,6 @@ public class SampleController {
         log.info("ex1..........");
     }
 
-    @GetMapping("/ex2")
-    public void ex2(Model model) {
-
-        log.info("ex2...........");
-        List<SampleDto> list = IntStream.rangeClosed(1, 20).asLongStream().mapToObj(i -> {
-           SampleDto dto = SampleDto.builder()
-                   .sno(i)
-                   .first("First.. " + i)
-                   .last("Last.. " + i)
-                   .regTime(LocalDateTime.now())
-                   .build();
-           return dto;
-        }).collect(Collectors.toList());
-
-        model.addAttribute("list", list);
-    }
-
     @GetMapping("/exInline")
     public String exInline(RedirectAttributes redirectAttributes) {
 
@@ -64,7 +47,7 @@ public class SampleController {
         log.info("ex3..............");
     }
 
-    @GetMapping({"/ex2", "/exLink"})
+    @GetMapping({"/ex2", "/exLink", "/exObj"})
     public void exModel(Model model) {
         List<SampleDto> list = IntStream.rangeClosed(1, 20).asLongStream().mapToObj(i -> {
             SampleDto dto = SampleDto.builder()
@@ -79,4 +62,11 @@ public class SampleController {
 
         model.addAttribute("list", list);
     }
+
+    @GetMapping({"/exLayout1", "/exLayout2", "/exTemplate", "/exSidebar"})
+    public void exLayout1() {
+
+        log.info("exLayout.............");
+    }
+
 }
